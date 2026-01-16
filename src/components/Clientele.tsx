@@ -2,26 +2,26 @@
 
 import Image from "next/image";
 
-// Row 1: Logos 1 to 6
+// Row 1: Updated to new lowercase paths
 const row1 = [
-  "/Carousel/Website Company Logo - 1.png",
-  "/Carousel/Website Company Logo - 2.png",
-  "/Carousel/Website Company Logo - 3.png",
-  "/Carousel/Website Company Logo - 4.png",
-  "/Carousel/Website Company Logo - 5.png",
-  "/Carousel/Website Company Logo - 6.png",
-  "/Carousel/Website Company Logo - 18.png",
+  "/clients/client-1.png",
+  "/clients/client-2.png",
+  "/clients/client-3.png",
+  "/clients/client-4.png",
+  "/clients/client-5.png",
+  "/clients/client-6.png",
+  "/clients/client-18.png",
 ];
 
-// Row 2: Logos 7 to 12
+// Row 2: Updated to new lowercase paths
 const row2 = [
-  "/Carousel/Website Company Logo - 13.png",
-  "/Carousel/Website Company Logo - 8.png",
-  "/Carousel/Website Company Logo - 9.png",
-  "/Carousel/Website Company Logo - 10.png",
-  "/Carousel/Website Company Logo - 11.png",
-  "/Carousel/Website Company Logo - 12.png",
-  "/Carousel/Website Company Logo - 17.png",
+  "/clients/client-13.png",
+  "/clients/client-8.png",
+  "/clients/client-9.png",
+  "/clients/client-10.png",
+  "/clients/client-11.png",
+  "/clients/client-12.png",
+  "/clients/client-17.png",
 ];
 
 export default function Clientele() {
@@ -89,7 +89,6 @@ export default function Clientele() {
                 height={90} 
                 style={{ 
                     objectFit: "contain", 
-                    // FILTER REMOVED HERE for original color
                 }}
               />
             </div>
@@ -116,7 +115,6 @@ export default function Clientele() {
                 height={90} 
                 style={{ 
                     objectFit: "contain",
-                    // FILTER REMOVED HERE for original color
                 }} 
               />
             </div>
