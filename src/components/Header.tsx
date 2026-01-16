@@ -1,151 +1,123 @@
 "use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import Image from "next/image"; // Ensures we can use the logo image
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  // State to manage the dropdown visibility
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header
+    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        zIndex: 50,
-        transition: "all 0.3s ease",
-        background: isScrolled 
-          ? "rgba(0, 0, 0, 0.9)" 
-          : "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)",
-        padding: isScrolled ? "10px 0" : "20px 0"
+        // If the menu is open, make background white. Otherwise, transparent (glass effect)
+        backgroundColor: isMenuOpen ? "white" : "rgba(0,0,0,0.3)",
+        backdropFilter: "blur(5px)" 
       }}
     >
       <div style={{
-        maxWidth: "1200px", 
-        width: "90%",
+        maxWidth: "1300px",
         margin: "0 auto",
+        padding: "15px 20px",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "space-between"
       }}>
         
-        {/* LOGO */}
-        <div style={{ position: "relative", zIndex: 50 }}>
-           <Link href="/">
-             <Image 
-               src="/logo.png" 
-               alt="Company Logo" 
-               width={140} 
-               height={90} 
-               style={{ objectFit: "contain", width: "auto", height: "90px" }}
-               priority
-             />
-           </Link>
-        </div>
+        {/* === LOGO === */}
+        <Link href="/">
+           {/* Replace '/logo.png' with your actual logo path if different */}
+           <img 
+             src="/logo.png" 
+             alt="Elixi Fit-Out" 
+             style={{ height: "50px", objectFit: "contain" }} 
+           />
+        </Link>
 
-        {/* NAVIGATION */}
-        <nav style={{ display: "flex", gap: "40px", alignItems: "center" }}>
+
+        {/* === DESKTOP NAVIGATION (Hidden on Mobile) === */}
+        {/* 'hidden md:flex' means: Hidden on mobile, Flex on Medium screens and up */}
+        <nav className="hidden md:flex items-center gap-8">
+          <Link href="/" className="text-white hover:text-orange-500 font-bold transition-colors">
+            HOME
+          </Link>
+          <Link href="/services" className="text-white hover:text-orange-500 font-bold transition-colors">
+            SERVICES
+          </Link>
+          <Link href="/about-us" className="text-white hover:text-orange-500 font-bold transition-colors">
+            ABOUT US
+          </Link>
           
-          {/* HOME LINK */}
-          <Link href="/" style={navLinkStyle}>HOME</Link>
-
-          {/* SERVICES DROPDOWN CONTAINER */}
-          <div 
-            style={{ position: "relative", padding: "10px 0" }}
-            onMouseEnter={() => setIsServicesOpen(true)}
-            onMouseLeave={() => setIsServicesOpen(false)}
-          >
-            {/* The Main "Services" Link */}
-            <Link 
-              href="/services" 
-              style={navLinkStyle}
-            >
-              SERVICES <span style={{ fontSize: "10px", marginLeft: "5px" }}>▼</span>
-            </Link>
-
-            {/* THE DROPDOWN MENU */}
-            {isServicesOpen && (
-              <div style={{
-                position: "absolute",
-                top: "100%", // Pushes it right below the text
-                left: "50%",
-                transform: "translateX(-50%)", // Centers it relative to "Services"
-                backgroundColor: "white",
-                minWidth: "240px", // Slightly wider to fit AV Solution text
-                boxShadow: "0px 10px 30px rgba(0,0,0,0.2)",
-                borderRadius: "2px",
-                padding: "10px 0",
-                display: "flex",
-                flexDirection: "column",
-                zIndex: 100
-              }}>
-                {/* Dropdown Item 1 */}
-                <Link href="/services/design-and-build" style={dropdownItemStyle}>
-                  Design and Build
-                </Link>
-                <div style={{ height: "1px", backgroundColor: "#eaeaea", width: "100%" }}></div>
-
-                {/* Dropdown Item 2 */}
-                <Link href="/services/project-management" style={dropdownItemStyle}>
-                  Project Management
-                </Link>
-                <div style={{ height: "1px", backgroundColor: "#eaeaea", width: "100%" }}></div>
-
-                {/* Dropdown Item 3 */}
-                <Link href="/services/mep-services" style={dropdownItemStyle}>
-                  MEP Services
-                </Link>
-                <div style={{ height: "1px", backgroundColor: "#eaeaea", width: "100%" }}></div>
-
-                {/* Dropdown Item 4 (NEW) */}
-                <Link href="/services/av-solution" style={dropdownItemStyle}>
-                  AV Solution and Consultancy
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* OTHER LINKS */}
-          <Link href="/about-us" style={navLinkStyle}>ABOUT US</Link>
-          <Link href="/contact-us" style={navLinkStyle}>CONTACT US</Link>
-
+          {/* Contact Us Button */}
+          <Link href="/contact-us" style={{
+            backgroundColor: "#F09C16", // Orange
+            color: "white",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            textDecoration: "none"
+          }}>
+            CONTACT US
+          </Link>
         </nav>
 
+
+        {/* === MOBILE MENU BUTTON (Visible ONLY on Mobile) === */}
+        {/* 'md:hidden' means: Hidden on Medium screens and up (Desktop) */}
+        <button 
+          className="md:hidden block"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          style={{ background: "none", border: "none", cursor: "pointer" }}
+        >
+          {/* Toggle between Hamburger (☰) and Close (X) Icon */}
+          {isMenuOpen ? (
+            // Close Icon (X) - Black color because background is white
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : (
+            // Hamburger Icon (☰) - White color to contrast with dark background
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          )}
+        </button>
+
       </div>
+
+      {/* === MOBILE MENU DROPDOWN === */}
+      {/* Only shows when isMenuOpen is true */}
+      {isMenuOpen && (
+        <div style={{
+          position: "absolute",
+          top: "100%", // Right below the header
+          left: 0,
+          width: "100%",
+          backgroundColor: "white",
+          padding: "20px 0",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "20px",
+          boxShadow: "0px 10px 20px rgba(0,0,0,0.1)"
+        }}>
+          <Link href="/" onClick={() => setIsMenuOpen(false)} style={{ color: "black", fontSize: "18px", fontWeight: "bold" }}>
+            HOME
+          </Link>
+          <Link href="/services" onClick={() => setIsMenuOpen(false)} style={{ color: "black", fontSize: "18px", fontWeight: "bold" }}>
+            SERVICES
+          </Link>
+          <Link href="/about-us" onClick={() => setIsMenuOpen(false)} style={{ color: "black", fontSize: "18px", fontWeight: "bold" }}>
+            ABOUT US
+          </Link>
+          <Link href="/contact-us" onClick={() => setIsMenuOpen(false)} style={{ color: "#F09C16", fontSize: "18px", fontWeight: "bold" }}>
+            CONTACT US
+          </Link>
+        </div>
+      )}
     </header>
   );
 }
-
-// --- STYLES HELPER ---
-const navLinkStyle = {
-  color: "white",
-  fontSize: "14px",
-  fontWeight: "600",
-  textTransform: "uppercase" as const,
-  letterSpacing: "1px",
-  textDecoration: "none",
-  transition: "color 0.2s",
-  fontFamily: "sans-serif",
-  cursor: "pointer"
-};
-
-const dropdownItemStyle = {
-  color: "#333", // Black text
-  fontSize: "14px",
-  padding: "12px 20px",
-  textDecoration: "none",
-  display: "block",
-  fontFamily: "sans-serif",
-  transition: "background 0.2s",
-};
