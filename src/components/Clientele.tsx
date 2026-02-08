@@ -10,7 +10,7 @@ const row1 = [
   "/clients/client-4.png",
   "/clients/client-5.png",
   "/clients/client-6.png",
-  "/clients/client-18.png",
+  "/clients/client-14.png",
 ];
 
 // Row 2: Updated to new lowercase paths
@@ -21,7 +21,7 @@ const row2 = [
   "/clients/client-10.png",
   "/clients/client-11.png",
   "/clients/client-12.png",
-  "/clients/client-17.png",
+
 ];
 
 export default function Clientele() {
