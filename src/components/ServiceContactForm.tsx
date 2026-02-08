@@ -23,13 +23,38 @@ export default function ServiceContactForm() {
     alert("Thank you! We will contact you shortly.");
   };
 
+  // --- COMPREHENSIVE LIST OF INDIAN CITIES ---
+  const indianCities = [
+    "Agra", "Ahmedabad", "Ajmer", "Aligarh", "Allahabad (Prayagraj)", "Amravati", "Amritsar", "Asansol", "Aurangabad", 
+    "Bangalore (Bengaluru)", "Bareilly", "Belgaum", "Bhavnagar", "Bhilai", "Bhiwandi", "Bhopal", "Bhubaneswar", "Bikaner", "Bilaspur", "Bokaro Steel City", 
+    "Chandigarh", "Chennai", "Coimbatore", "Cuttack", 
+    "Dehradun", "Delhi", "Dhanbad", "Durgapur", 
+    "Erode", "Faridabad", "Firozabad", 
+    "Ghaziabad", "Goa", "Gorakhpur", "Gulbarga", "Guntur", "Gurgaon (Gurugram)", "Guwahati", "Gwalior", 
+    "Hubli-Dharwad", "Hyderabad", 
+    "Imphal", "Indore", 
+    "Jabalpur", "Jaipur", "Jalandhar", "Jammu", "Jamnagar", "Jamshedpur", "Jhansi", "Jodhpur", 
+    "Kakinada", "Kannur", "Kanpur", "Kochi (Cochin)", "Kolhapur", "Kolkata", "Kollam", "Kota", "Kozhikode (Calicut)", "Kurnool", 
+    "Lucknow", "Ludhiana", 
+    "Madurai", "Malappuram", "Mangalore", "Mathura", "Meerut", "Moradabad", "Mumbai", "Mysore (Mysuru)", 
+    "Nagpur", "Nanded", "Nashik", "Navi Mumbai", "Nellore", "Noida", 
+    "Patna", "Pondicherry", "Pune", 
+    "Raipur", "Rajahmundry", "Rajkot", "Ranchi", "Rourkela", 
+    "Salem", "Sangli", "Shimla", "Siliguri", "Solapur", "Srinagar", "Surat", 
+    "Thane", "Thiruvananthapuram (Trivandrum)", "Thrissur", "Tiruchirappalli (Trichy)", "Tirunelveli", "Tiruppur", 
+    "Ujjain", 
+    "Vadodara", "Varanasi", "Vasai-Virar City", "Vellore", "Vijayawada", "Visakhapatnam", 
+    "Warangal", 
+    "Other"
+  ];
+
   return (
     <section style={{ 
-      backgroundColor: "#ffffff", // CHANGED: Pure White Background
+      backgroundColor: "#ffffff", 
       padding: "100px 5%",
       color: "black",
       fontFamily: "sans-serif",
-      borderTop: "1px solid #e3d5c6" // Added subtle Gold border to match brand
+      borderTop: "1px solid #e3d5c6" 
     }}>
       <div style={{ 
         maxWidth: "1200px", 
@@ -78,7 +103,7 @@ export default function ServiceContactForm() {
                  </svg>
               </div>
               <span style={{ fontSize: "16px", fontWeight: "500", color: "#333" }}>
-                elixifiout@gmail.com
+                accounts@elixifitout.com
               </span>
             </div>
 
@@ -106,13 +131,12 @@ export default function ServiceContactForm() {
               <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} style={inputStyle} required />
             </div>
 
+            {/* UPDATED CITY DROPDOWN */}
             <select name="city" value={formData.city} onChange={handleChange} style={inputStyle}>
               <option value="Select City" disabled>Select City</option>
-              <option value="Mumbai">Mumbai</option>
-              <option value="Pune">Pune</option>
-              <option value="Bangalore">Bangalore</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Other">Other</option>
+              {indianCities.map((city) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
             </select>
 
             <select name="area" value={formData.area} onChange={handleChange} style={inputStyle}>
@@ -158,8 +182,8 @@ const inputStyle = {
   width: "100%",
   padding: "15px",
   borderRadius: "4px",
-  border: "1px solid #ccc", // Slightly darker border for better visibility on white
-  backgroundColor: "#f9f9f9", // Slight grey tint inside inputs for contrast
+  border: "1px solid #ccc", 
+  backgroundColor: "#f9f9f9", 
   fontSize: "14px",
   color: "#333",
   outline: "none",

@@ -21,12 +21,7 @@ const projectImages = [
   { src: "/consultancyimages/20251226_145516.jpg", alt: "Site Photo" },
   { src: "/consultancyimages/IMG-20240321-WA0032.jpg", alt: "Site Progress" },
   
-  // June 2024
-  { src: "/consultancyimages/IMG-20240613-WA0016.jpg", alt: "Site Progress" },
-  { src: "/consultancyimages/IMG-20240613-WA0017.jpg", alt: "Site Progress" },
-  { src: "/consultancyimages/IMG-20240613-WA0018.jpg", alt: "Site Progress" },
-  { src: "/consultancyimages/IMG-20240613-WA0019.jpg", alt: "Site Progress" },
-  { src: "/consultancyimages/IMG-20240613-WA0020.jpg", alt: "Site Progress" },
+
   
   // June 23
   { src: "/consultancyimages/IMG-20240623-WA0009.jpg", alt: "Construction" },
@@ -63,9 +58,7 @@ const projectImages = [
   { src: "/consultancyimages/IMG-20251126-WA0017.jpg", alt: "Exterior" },
   { src: "/consultancyimages/IMG-20251126-WA0018.jpg", alt: "Exterior" },
   { src: "/consultancyimages/IMG-20251126-WA0020.jpg", alt: "Exterior" },
-  { src: "/consultancyimages/IMG-20251204-WA0014.jpg", alt: "Structure" },
-  { src: "/consultancyimages/IMG-20251204-WA0015.jpg", alt: "Structure" },
-  { src: "/consultancyimages/IMG-20251204-WA0018.jpg", alt: "Structure" }
+  { src: "/consultancyimages/IMG-20251204-WA0014.jpg", alt: "Structure" }
 ];
 
 // --- 2. DATA: VIDEOS ---
@@ -123,34 +116,34 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* --- MISSION SECTION --- */}
+      {/* --- MISSION SECTION (EXAGGERATED) --- */}
       <section style={{ backgroundColor: "white", padding: "100px 5%" }}>
         <div style={{ maxWidth: "1300px", margin: "0 auto", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "80px", justifyContent: "center" }}>
           <div style={{ flex: "1 1 500px" }}>
-            <h2 style={{ fontSize: "38px", fontWeight: "bold", marginBottom: "30px", color: "black" }}>Mission</h2>
+            <h2 style={{ fontSize: "38px", fontWeight: "bold", marginBottom: "30px", color: "black", textTransform: "uppercase", letterSpacing: "1px" }}>Our Mission</h2>
             <p style={{ fontSize: "16px", lineHeight: "1.8", color: "#666", textAlign: "justify" }}>
-              At <strong>Elixi Interior</strong>, our mission is to redefine office environments by delivering tailored and technically advanced design solutions...
+              At <strong>Elixi Interior</strong>, our mission is to <strong>revolutionize</strong> the very fabric of commercial environments. We are not just builders; we are architects of ambition. We strive to engineer spaces that transcend functionality—creating ecosystems that foster innovation, accelerate productivity, and embody the pinnacle of corporate excellence. By fusing <strong>cutting-edge technology</strong> with <strong>bespoke craftsmanship</strong>, we aim to deliver turnkey solutions that don’t just meet standards but obliterate them, setting a new global benchmark for what a workspace can achieve.
             </p>
           </div>
           <div style={{ flex: "1 1 500px" }}>
-            <div style={{ position: "relative", width: "100%", height: "450px", overflow: "hidden" }}>
+            <div style={{ position: "relative", width: "100%", height: "450px", overflow: "hidden", borderRadius: "8px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}>
               <Image src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" alt="Our Mission" fill style={{ objectFit: "cover" }} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- VISION SECTION --- */}
-      <section style={{ backgroundColor: "white", padding: "0px 5% 100px 5%" }}>
+      {/* --- VISION SECTION (EXAGGERATED) --- */}
+      <section style={{ backgroundColor: "#fcfcfc", padding: "100px 5%" }}>
         <div style={{ maxWidth: "1300px", margin: "0 auto", display: "flex", flexWrap: "wrap", flexDirection: "row-reverse", alignItems: "center", gap: "80px", justifyContent: "center" }}>
           <div style={{ flex: "1 1 500px" }}>
-            <h2 style={{ fontSize: "38px", fontWeight: "bold", marginBottom: "30px", color: "black" }}>Vision</h2>
+            <h2 style={{ fontSize: "38px", fontWeight: "bold", marginBottom: "30px", color: "black", textTransform: "uppercase", letterSpacing: "1px" }}>Our Vision</h2>
             <p style={{ fontSize: "16px", lineHeight: "1.8", color: "#666", textAlign: "justify" }}>
-              Our vision is to establish <strong>Elixi Interior</strong> as a distinguished leader in the commercial interior design sector...
+              Our vision is to stand as the <strong>undisputed titan</strong> of the commercial interior design industry. We envision a future where every structure we touch becomes a landmark of prestige and performance. We aim to be the definitive partner for world-class enterprises, empowering them to lead their industries through spaces that radiate authority and sophistication. Elixi Interior is dedicated to pioneering a legacy of <strong>uncompromising quality</strong> and <strong>visionary aesthetics</strong>, ensuring that our clients don't just occupy a space—they dominate it.
             </p>
           </div>
           <div style={{ flex: "1 1 500px" }}>
-             <div style={{ position: "relative", width: "100%", height: "450px", overflow: "hidden" }}>
+              <div style={{ position: "relative", width: "100%", height: "450px", overflow: "hidden", borderRadius: "8px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}>
               <Image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop" alt="Our Vision" fill style={{ objectFit: "cover" }} />
             </div>
           </div>
@@ -158,7 +151,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* --- CREATIVE PROJECT GALLERY (BENTO GRID) --- */}
-      <section style={{ padding: "80px 20px", backgroundColor: "#f9f9f9" }}>
+      <section style={{ padding: "100px 20px", backgroundColor: "white" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
@@ -192,14 +185,15 @@ export default function AboutUsPage() {
       </section>
 
       {/* --- VIDEO SECTION --- */}
-      <section style={{ padding: "100px 5%", backgroundColor: "white" }}>
+      <section style={{ padding: "100px 5%", backgroundColor: "#111" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "50px" }}>
-            <h2 style={{ fontSize: "36px", fontWeight: "bold", color: "black" }}>Site Walkthroughs & Videos</h2>
+            <h2 style={{ fontSize: "36px", fontWeight: "bold", color: "white" }}>Site Walkthroughs & Videos</h2>
+            <p style={{ color: "#999", marginTop: "10px" }}>Experience the scale and precision of our operations.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "30px" }}>
             {projectVideos.map((videoSrc, index) => (
-              <div key={index} style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 10px 30px rgba(0,0,0,0.1)", backgroundColor: "black", minHeight: "200px" }}>
+              <div key={index} style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 10px 30px rgba(0,0,0,0.3)", backgroundColor: "black", minHeight: "200px", border: "1px solid #333" }}>
                 <video controls style={{ width: "100%", height: "100%", display: "block" }}>
                   <source src={videoSrc} type="video/mp4" />
                 </video>
@@ -211,7 +205,7 @@ export default function AboutUsPage() {
 
       {/* --- LIGHTBOX --- */}
       {selectedImage && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 1000, backgroundColor: "rgba(0,0,0,0.9)", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={() => setSelectedImage(null)}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 1000, backgroundColor: "rgba(0,0,0,0.95)", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }} onClick={() => setSelectedImage(null)}>
           <div style={{ position: "relative", maxWidth: "90vw", maxHeight: "90vh", width: "100%", height: "100%" }}>
             <Image src={selectedImage} alt="Full view" fill style={{ objectFit: "contain" }} />
             <button style={{ position: "absolute", top: "20px", right: "20px", backgroundColor: "white", border: "none", borderRadius: "50%", width: "40px", height: "40px", fontSize: "20px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
@@ -257,10 +251,10 @@ export default function AboutUsPage() {
 
         /* HOVER EFFECTS */
         .gallery-image {
-          transition: transform 0.5s ease;
+          transition: transform 0.7s ease;
         }
         .gallery-card:hover .gallery-image {
-          transform: scale(1.1);
+          transform: scale(1.15);
         }
 
         /* TEXT OVERLAY (Hidden by default, slides up on hover) */
@@ -270,9 +264,9 @@ export default function AboutUsPage() {
           left: 0;
           width: 100%;
           padding: 20px;
-          background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+          background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
           transform: translateY(100%);
-          transition: transform 0.3s ease;
+          transition: transform 0.4s ease;
           display: flex;
           align-items: flex-end;
         }

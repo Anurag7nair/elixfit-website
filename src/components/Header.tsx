@@ -5,13 +5,13 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function Header() {
-  // State for Scroll Effect (From your code)
+  // State for Scroll Effect
   const [isScrolled, setIsScrolled] = useState(false);
   
-  // State for Desktop Hover Dropdown (From your code)
+  // State for Desktop Hover Dropdown
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
-  // State for Mobile Menu Toggle (From my code)
+  // State for Mobile Menu Toggle
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Scroll Listener
@@ -33,18 +33,17 @@ export default function Header() {
           width: "100%",
           zIndex: 50,
           transition: "all 0.3s ease",
-          // Use your specific background logic
           background: isMobileMenuOpen 
-            ? "white" // Mobile menu open = White background
+            ? "white" 
             : isScrolled 
               ? "rgba(0, 0, 0, 0.9)" 
-              : "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)",
-          padding: isScrolled ? "10px 0" : "20px 0",
+              : "linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%)",
+          padding: isScrolled ? "15px 0" : "30px 0", 
           boxShadow: isScrolled ? "0 4px 20px rgba(0,0,0,0.1)" : "none"
         }}
       >
         <div style={{
-          maxWidth: "1200px", 
+          maxWidth: "1400px", 
           width: "90%",
           margin: "0 auto",
           display: "flex",
@@ -58,9 +57,14 @@ export default function Header() {
                <Image 
                  src="/logo.png" 
                  alt="Company Logo" 
-                 width={140} 
-                 height={90} 
-                 style={{ objectFit: "contain", width: "auto", height: "50px" }}
+                 width={300} 
+                 height={180} 
+                 style={{ 
+                     objectFit: "contain", 
+                     width: "auto", 
+                     height: isScrolled ? "90px" : "130px", 
+                     transition: "height 0.3s ease"
+                 }}
                  priority
                />
              </Link>
@@ -71,7 +75,6 @@ export default function Header() {
           ========================================= */}
           <nav className="desktop-nav" style={{ display: "flex", gap: "40px", alignItems: "center" }}>
             
-            {/* HOME */}
             <Link href="/" style={navLinkStyle}>HOME</Link>
 
             {/* SERVICES DROPDOWN */}
@@ -110,11 +113,17 @@ export default function Header() {
                   <div style={{ height: "1px", backgroundColor: "#eaeaea", width: "100%" }}></div>
                   
                   <Link href="/services/av-solution" style={dropdownItemStyle}>AV Solution and Consultancy</Link>
+                  <div style={{ height: "1px", backgroundColor: "#eaeaea", width: "100%" }}></div>
+
+                  {/* NEW LINKS ADDED HERE */}
+                  <Link href="/services/brand-aligned" style={dropdownItemStyle}>Brand Aligned Interior</Link>
+                  <div style={{ height: "1px", backgroundColor: "#eaeaea", width: "100%" }}></div>
+
+                  <Link href="/services/hvac-systems" style={dropdownItemStyle}>HVAC Systems</Link>
                 </div>
               )}
             </div>
 
-            {/* OTHER LINKS */}
             <Link href="/about-us" style={navLinkStyle}>ABOUT US</Link>
             <Link href="/contact-us" style={navLinkStyle}>CONTACT US</Link>
 
@@ -131,13 +140,13 @@ export default function Header() {
           >
             {isMobileMenuOpen ? (
               // Close (X) Icon - Black
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             ) : (
-              // Hamburger (☰) Icon - White (unless scrolled/menu open)
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke={isScrolled ? "white" : "white"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              // Hamburger (☰) Icon - White
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={isScrolled ? "white" : "white"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -154,12 +163,12 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="mobile-menu-overlay" style={{
           position: "fixed",
-          top: "80px", // Pushes it below the header
+          top: "0", 
           left: 0,
           width: "100%",
           height: "100vh",
           backgroundColor: "white",
-          padding: "20px 0",
+          paddingTop: "150px", 
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -168,13 +177,16 @@ export default function Header() {
         }}>
           <Link href="/" onClick={() => setIsMobileMenuOpen(false)} style={mobileLinkStyle}>HOME</Link>
           
-          {/* Mobile Services Section */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "15px" }}>
             <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} style={{...mobileLinkStyle, color: "#F09C16"}}>SERVICES</Link>
             <Link href="/services/design-and-build" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- Design & Build</Link>
             <Link href="/services/project-management" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- Project Management</Link>
             <Link href="/services/mep-services" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- MEP Services</Link>
             <Link href="/services/av-solution" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- AV Solutions</Link>
+            
+            {/* NEW MOBILE LINKS ADDED HERE */}
+            <Link href="/services/brand-aligned" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- Brand Aligned Interior</Link>
+            <Link href="/services/hvac-systems" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- HVAC Systems</Link>
           </div>
 
           <Link href="/about-us" onClick={() => setIsMobileMenuOpen(false)} style={mobileLinkStyle}>ABOUT US</Link>
@@ -182,29 +194,13 @@ export default function Header() {
         </div>
       )}
 
-      {/* =========================================
-          CSS STYLES (Responsive Logic)
-      ========================================= */}
       <style jsx global>{`
-        /* DEFAULT (MOBILE VIEW) */
-        .desktop-nav {
-          display: none !important; /* Hide complicated desktop nav on mobile */
-        }
-        .mobile-btn {
-          display: block !important; /* Show hamburger */
-        }
-
-        /* DESKTOP VIEW (Screens wider than 768px) */
+        .desktop-nav { display: none !important; }
+        .mobile-btn { display: block !important; }
         @media (min-width: 768px) {
-          .desktop-nav {
-            display: flex !important; /* Show desktop nav */
-          }
-          .mobile-btn {
-            display: none !important; /* Hide hamburger */
-          }
-          .mobile-menu-overlay {
-            display: none !important; /* Safety: Hide mobile menu on desktop */
-          }
+          .desktop-nav { display: flex !important; }
+          .mobile-btn { display: none !important; }
+          .mobile-menu-overlay { display: none !important; }
         }
       `}</style>
     </>
@@ -212,12 +208,10 @@ export default function Header() {
 }
 
 // --- STYLES HELPER ---
-
-// Desktop Nav Link Style
 const navLinkStyle = {
   color: "white",
-  fontSize: "14px",
-  fontWeight: "600",
+  fontSize: "15px",
+  fontWeight: "700",
   textTransform: "uppercase" as const,
   letterSpacing: "1px",
   textDecoration: "none",
@@ -226,9 +220,8 @@ const navLinkStyle = {
   cursor: "pointer"
 };
 
-// Desktop Dropdown Item Style
 const dropdownItemStyle = {
-  color: "#333", // Black text
+  color: "#333",
   fontSize: "14px",
   padding: "12px 20px",
   textDecoration: "none",
@@ -237,20 +230,18 @@ const dropdownItemStyle = {
   transition: "background 0.2s",
 };
 
-// Mobile Main Link Style
 const mobileLinkStyle = {
   textDecoration: 'none', 
   color: "black", 
-  fontSize: "18px", 
+  fontSize: "20px", 
   fontWeight: "bold",
   fontFamily: "sans-serif"
 };
 
-// Mobile Sub Link (Services) Style
 const mobileSubLinkStyle = {
   textDecoration: 'none', 
   color: "#666", 
-  fontSize: "15px", 
+  fontSize: "16px", 
   fontWeight: "normal",
   fontFamily: "sans-serif"
 };

@@ -44,22 +44,22 @@ export default function Hero() {
               zIndex: 0
             }}
           >
-             <div style={{
-                 width: "100%", height: "100%",
-                 willChange: "transform",
-                 transform: isActive ? "scale(1.15)" : "scale(1)",
-                 transition: isActive ? "transform 7s ease-out" : "transform 0s linear 1.5s" 
-             }}>
-                 <Image
-                   src={slide}
-                   alt="Architecture Slide"
-                   fill
-                   unoptimized 
-                   style={{ objectFit: "cover", opacity: 0.5 }} 
-                   priority={index === 0}
-                 />
-                 <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.3)" }}></div>
-             </div>
+              <div style={{
+                  width: "100%", height: "100%",
+                  willChange: "transform",
+                  transform: isActive ? "scale(1.15)" : "scale(1)",
+                  transition: isActive ? "transform 7s ease-out" : "transform 0s linear 1.5s" 
+              }}>
+                  <Image
+                    src={slide}
+                    alt="Architecture Slide"
+                    fill
+                    unoptimized 
+                    style={{ objectFit: "cover", opacity: 0.4 }} 
+                    priority={index === 0}
+                  />
+                  <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.4)" }}></div>
+              </div>
           </div>
         );
       })}
@@ -71,50 +71,62 @@ export default function Hero() {
           textAlign: "center", 
           width: "100%",          
           maxWidth: "1400px",     
-          padding: "0 20px"
+          padding: "0 20px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "5px" // Reduced gap between main blocks
       }}>
         
-        {/* MAIN HEADING */}
-        <h1 style={{ 
-          color: "white", 
-          fontSize: "clamp(28px, 5.5vw, 60px)", 
-          fontFamily: "sans-serif", 
-          fontWeight: "900", 
-          textTransform: "uppercase",
-          lineHeight: "1.1",
-          letterSpacing: "1px", 
-          marginBottom: "10px", // Reduced margin to bring the new line closer
-          textShadow: "0 10px 30px rgba(0,0,0,0.5)" 
-        }}>
-          Building Strong <br />
-          Foundations That Last
-        </h1>
+        {/* WRAPPER FOR TITLE & SUBTITLE ALIGNMENT */}
+        <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "flex-end" }}>
+            
+            {/* 1. MAIN TITLE "ELIXI FIT OUT" */}
+            <h1 style={{ 
+              color: "white", 
+              fontSize: "clamp(32px, 6vw, 80px)", 
+              fontFamily: "sans-serif", 
+              fontWeight: "900", 
+              textTransform: "uppercase",
+              lineHeight: "1",
+              letterSpacing: "2px", 
+              marginBottom: "5px",
+              textShadow: "0 10px 30px rgba(0,0,0,0.5)",
+              whiteSpace: "nowrap" 
+            }}>
+              ELIXI FIT OUT
+            </h1>
 
-        {/* --- NEW LINE INSERTED HERE --- */}
-        <p style={{ 
-          color: "#d4af37", // A subtle gold/beige to make it stand out
-          fontSize: "14px", 
-          fontFamily: "sans-serif",
-          textTransform: "uppercase",
-          letterSpacing: "3px",
-          fontWeight: "600",
-          marginBottom: "25px" // Space before the description paragraph
-        }}>
-           Elixi fitout By elixihetic
-        </p>
+            {/* 2. SUBTITLE "by Elixi Hitec" - UPDATED: BIGGER SIZE */}
+            <p style={{ 
+              color: "#F09C16", 
+              fontSize: "clamp(18px, 4vw, 32px)", // Increased size significantly
+              fontFamily: "sans-serif",
+              textTransform: "uppercase",
+              letterSpacing: "2px",
+              fontWeight: "bold",
+              marginBottom: "15px", // UPDATED: Reduced margin to pull the next line closer
+              textAlign: "right", 
+              width: "100%"
+            }}>
+               by Elixi Hitec
+            </p>
 
-        {/* SUBHEADING */}
-        <p style={{ 
-          color: "#e0e0e0", 
-          fontSize: "clamp(14px, 1.5vw, 18px)", 
-          fontFamily: "sans-serif",
-          fontWeight: "400",
-          letterSpacing: "1px",
-          maxWidth: "700px",
-          margin: "0 auto"
-        }}>
-          We lay the groundwork for structures that stand the test of time
-        </p>
+        </div>
+
+        {/* 3. TAGLINE "Weaving stories..." - Professional & Closer to text above */}
+        <div style={{ position: "relative", marginTop: "0px" }}>
+            <p style={{ 
+              color: "#e0e0e0", 
+              fontSize: "clamp(16px, 2vw, 22px)", 
+              fontFamily: "sans-serif", 
+              fontWeight: "400",
+              letterSpacing: "4px",  
+              whiteSpace: "nowrap" 
+            }}>
+              Weaving stories through spaces
+            </p>
+        </div>
 
       </div>
     </section>

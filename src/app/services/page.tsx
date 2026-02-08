@@ -24,7 +24,7 @@ const servicesList = [
   },
   {
     title: "MEP Services",
-    description: "Our Mechanical, Electrical, and Plumbing (MEP) assistance ensures that all technical aspects of your workspace are accurately integrated. We guarantee that your office's infrastructure is built to the highest standards, providing functionality, safety, and efficiency for your team.",
+    description: "Our Mechanical, Electrical, and Plumbing (MEP) assistance ensures that all technical aspects of your workspace are accurately integrated. We guarantee that your office's infrastructure is built to the highest standards, providing functionality, and safety for your team.",
     image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop", 
     link: "/services/mep-services",
     isComingSoon: false
@@ -36,31 +36,33 @@ const servicesList = [
     link: "/services/av-solution",
     isComingSoon: false
   },
+  // UPDATED: Now active with a link
   {
     title: "Brand-aligned Office Interior",
     description: "We prioritize your brand's identity in every design. Our designs are crafted to reflect your vision, ensuring that your workspace resonates with your company culture. By integrating your brand's identity into the office interior, we create a space that embodies your brand.",
     image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop", 
-    link: "#",
-    isComingSoon: true 
+    link: "/services/brand-aligned",
+    isComingSoon: false 
   },
+  // UPDATED: Now active with a link
   {
     title: "HVAC Systems",
     description: "Our HVAC system service is tailored to meet the demands of office interiors. We recognize the pivotal role of a comfortable and conducive work environment, and our dedicated team ensures the seamless integration of top-tier HVAC solutions into your office space.",
     image: "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?q=80&w=2070&auto=format&fit=crop", 
-    link: "#",
-    isComingSoon: true 
+    link: "/services/hvac-systems",
+    isComingSoon: false 
   },
-  // --- NEW ITEM ADDED HERE ---
+  // UPDATED: Removed isComingSoon logic completely for this item (No button shown)
   {
     title: "Civil and Interior Consultancy",
     description: "We provide total A-to-Z consultancy for construction projects and interior design. From the initial concept and structural planning to the final interior touches, our expert guidance ensures your project is executed flawlessly, on time, and within budget.",
-    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=2070&auto=format&fit=crop", // Meeting/Consultancy Image 
+    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=2070&auto=format&fit=crop", 
     link: "#",
-    isComingSoon: true // Set to true since there is no dedicated page yet
+    isComingSoon: null // Special flag: null means show nothing below
   }
 ];
 
-// --- 2. ADDITIONAL CAPABILITIES DATA (Reverted to 3 items) ---
+// --- 2. ADDITIONAL CAPABILITIES DATA ---
 const additionalCapabilities = [
   {
     title: "Civil and Carpentry Work",
@@ -107,23 +109,39 @@ export default function ServicesPage() {
       {/* --- 2. ZIG-ZAG SERVICE SECTIONS --- */}
       <div style={{ backgroundColor: "white" }}>
         {servicesList.map((service, index) => {
-          const isReverse = index % 2 !== 0;
+          // Check if index is odd or even for zigzag layout
+          const isReverse = index % 2 !== 0; 
+          
           return (
             <section key={index} style={{
-              display: "flex", flexDirection: isReverse ? "row-reverse" : "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center", padding: "80px 5%", maxWidth: "1400px", margin: "0 auto"
+              display: "flex", 
+              // Reverse the row direction for every odd item
+              flexDirection: isReverse ? "row-reverse" : "row", 
+              flexWrap: "wrap", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              padding: "80px 5%", 
+              maxWidth: "1400px", 
+              margin: "0 auto"
             }}>
               <div style={{ flex: "1 1 500px", padding: "20px" }}>
                 <div style={{ position: "relative", height: "400px", width: "100%", overflow: "hidden", borderRadius: "2px" }}>
                   <Image src={service.image} alt={service.title} fill style={{ objectFit: "cover" }} />
                 </div>
               </div>
+              
               <div style={{ flex: "1 1 500px", padding: "40px", textAlign: "left" }}>
                 <h2 style={{ fontSize: "36px", color: "black", marginBottom: "20px", fontFamily: "sans-serif", fontWeight: "bold" }}>{service.title}</h2>
                 <p style={{ fontSize: "16px", lineHeight: "1.8", color: "#666", marginBottom: "40px", fontFamily: "sans-serif" }}>{service.description}</p>
-                {service.isComingSoon ? (
+                
+                {/* LOGIC FOR BUTTON DISPLAY */}
+                {service.isComingSoon === true ? (
                   <div style={{ display: "inline-block", padding: "15px 40px", border: "1px dashed #ccc", color: "#999", fontSize: "14px", textTransform: "uppercase", letterSpacing: "1px", cursor: "not-allowed" }}>Coming Soon</div>
-                ) : (
+                ) : service.isComingSoon === false ? (
                   <Link href={service.link} style={{ display: "inline-block", padding: "15px 40px", border: "1px solid #ddd", color: "black", fontSize: "14px", textTransform: "uppercase", letterSpacing: "1px", textDecoration: "none", transition: "all 0.3s" }}>+ &nbsp; Know More</Link>
+                ) : (
+                  // If isComingSoon is null (Civil Consultancy), show nothing
+                  null
                 )}
               </div>
             </section>
