@@ -1,6 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
+// 1. Import all the stylish fonts
+import { Dancing_Script, Cinzel, Montserrat } from "next/font/google";
+
+// 2. Configure the fonts
+const dancingScript = Dancing_Script({ 
+  subsets: ["latin"], 
+  weight: ["700"] 
+});
+
+const cinzel = Cinzel({ 
+  subsets: ["latin"], 
+  weight: ["700"] 
+});
+
+const montserrat = Montserrat({ 
+  subsets: ["latin"], 
+  weight: ["400"] 
+});
 
 const processSteps = [
   {
@@ -58,25 +76,27 @@ export default function WorkingProcess() {
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         
-        {/* HEADER SECTION - UPDATED: Single Line & No Button */}
+        {/* HEADER SECTION (Kept as is) */}
         <div style={{ 
             textAlign: "center", 
             marginBottom: "80px"
         }}>
-          <h2 style={{ 
-             fontSize: "clamp(36px, 5vw, 60px)", 
-             fontFamily: "var(--font-allura), cursive", 
-             lineHeight: "1",
-             color: "white"
+          <h2 className={dancingScript.className} style={{ 
+              fontSize: "clamp(42px, 6vw, 72px)", 
+              lineHeight: "1.2",
+              color: "white",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "5px"
           }}>
             <span style={{ 
                 fontFamily: "sans-serif", 
-                fontSize: "16px", 
+                fontSize: "14px", 
                 letterSpacing: "0.2em", 
                 textTransform: "uppercase", 
-                marginRight: "15px",
-                verticalAlign: "middle",
-                fontWeight: "normal"
+                fontWeight: "normal",
+                color: "#a67c52" 
             }}>
               Our Working
             </span>
@@ -109,20 +129,45 @@ export default function WorkingProcess() {
                   maxWidth: "280px",
                   width: "100%",
                   marginLeft: "auto",
-                  marginRight: "auto"
+                  marginRight: "auto",
+                  position: "relative" // For absolute positioning of ID
               }}
             >
-              <div style={{ color: "#a67c52", width: "60px", height: "60px", marginBottom: "30px" }}>
+              {/* ID Number - Stylish Cinzel Font */}
+              <span className={cinzel.className} style={{
+                  position: "absolute",
+                  top: "20px",
+                  right: "20px",
+                  fontSize: "30px",
+                  color: "#333", // Subtle dark grey for the number
+                  fontWeight: "bold"
+              }}>
+                  {step.id}
+              </span>
+
+              <div style={{ color: "#a67c52", width: "50px", height: "50px", marginBottom: "30px" }}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{ width: "100%", height: "100%" }}>
                   {step.iconPath}
                 </svg>
               </div>
               
-              <h3 style={{ fontSize: "22px", marginBottom: "15px", fontFamily: "serif", color: "white" }}>
+              {/* Title - Stylish Cinzel Font */}
+              <h3 className={cinzel.className} style={{ 
+                  fontSize: "20px", 
+                  marginBottom: "15px", 
+                  color: "white",
+                  lineHeight: "1.3"
+              }}>
                 {step.title}
               </h3>
               
-              <p style={{ color: "#9ca3af", fontSize: "14px", lineHeight: "1.6", fontFamily: "sans-serif" }}>
+              {/* Description - Clean Montserrat Font */}
+              <p className={montserrat.className} style={{ 
+                  color: "#9ca3af", 
+                  fontSize: "13px", 
+                  lineHeight: "1.7", 
+                  fontWeight: "400" 
+              }}>
                 {step.description}
               </p>
             </div>

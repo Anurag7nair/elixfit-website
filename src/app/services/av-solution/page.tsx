@@ -6,72 +6,75 @@ import ServiceContactForm from "@/components/ServiceContactForm";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-// --- DATA FOR THE HERO SLIDER (Left Side) ---
+// --- DATA FOR THE HERO SLIDER (UPDATED IMAGES) ---
 const heroSlides = [
   {
     id: 1,
-    category: "MEP",
-    title: "Mechanical",
-    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop" 
+    category: "Audio Visual",
+    title: "Smart Conference Rooms",
+    // NEW: Stable image of a modern conference room with screens
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" 
   },
   {
     id: 2,
-    category: "MEP",
-    title: "Electrical",
-    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop" 
+    category: "Audio Visual",
+    title: "Immersive Auditoriums",
+    // NEW: Clear auditorium/stage visual
+    image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop" 
   },
   {
     id: 3,
-    category: "MEP",
-    title: "Plumbing",
-    image: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=2070&auto=format&fit=crop" 
+    category: "Audio Visual",
+    title: "System Automation",
+    // NEW IMAGE: Hand holding a smart control tablet (Automation/Interface)
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop" 
   }
 ];
 
 // --- DATA FOR THE SCROLLING GALLERY ---
 const focusImages = [
-  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop", // Audio Equipment
+  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop", // Meeting Space
+  "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop", // Modern Lounge/Screen
+  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop", // Video Wall
+  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop"  // Sound Waves
 ];
 
 // --- DATA FOR THE PROCESS GRID ---
 const processSteps = [
   {
-    title: "Schematics",
-    desc: "Access detailed schematics that facilitate understanding and implementation.",
-    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12h20"/><path d="M2 12l5-5"/><path d="M2 12l5 5"/><path d="M22 12l-5-5"/><path d="M22 12l-5 5"/><circle cx="12" cy="12" r="3"/></svg>)
+    title: "Needs Assessment",
+    desc: "Analyzing room dimensions and usage to define audio-visual requirements.",
+    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12h20"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><path d="M10 12h4"/><rect x="2" y="6" width="20" height="6" rx="1"/></svg>)
   },
   {
-    title: "Layouts",
-    desc: "Develop efficient layouts that optimize space, airflow, and maintenance access.",
-    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>)
+    title: "Acoustic Simulation",
+    desc: "Mapping sound coverage to eliminate echoes and dead zones for perfect clarity.",
+    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>)
   },
   {
-    title: "HVAC Equipment Selection",
-    desc: "Assess facility requirements to choose the most suitable HVAC systems for maximum performance.",
-    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M2 12a15 15 0 0 1 20 0"/></svg>)
+    title: "System Design",
+    desc: "Selecting the right mix of displays, microphones, speakers, and control units.",
+    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>)
   },
   {
-    title: "Distribution and Load Management",
-    desc: "Implement detailed load analysis to enhance electrical distribution efficiency and reliability.",
-    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>)
+    title: "Seamless Integration",
+    desc: "Installing hardware with concealed wiring to maintain the aesthetic of the space.",
+    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>)
   },
   {
-    title: "Sustainable Systems and Solutions",
-    desc: "Know about new technologies and systems that would make your office life efficient.",
-    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.2 14.9L22 13l-1.6-1.6c.1-.4.2-.9.2-1.4 0-.5-.1-1-.2-1.4l1.6-1.6-1.8-1.8-1.6 1.6c-.4-.1-.9-.2-1.4-.2-.5 0-1 .1-1.4.2L13 2 11.2 3.8l1.6 1.6c-.1.4-.2.9-.2 1.4 0 .5.1 1 .2 1.4l-1.6 1.6 1.8 1.8 1.6-1.6c.4.1.9.2 1.4.2.5 0 1-.1 1.4-.2l1.6 1.6 1.8-1.8z"/><circle cx="12" cy="12" r="3"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/></svg>)
+    title: "Smart Automation",
+    desc: "Centralized control systems for lighting, shades, and media with a single touch.",
+    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>)
   },
   {
-    title: "Contact us",
-    desc: "For more MEP services related inquiries, please contact us for expert assistance.",
-    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>)
+    title: "Support & Maintenance",
+    desc: "Ongoing calibration and updates to ensure your technology never fails.",
+    icon: (<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>)
   }
 ];
 
-export default function MepServicesPage() {
+export default function AvSolutionsPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -135,13 +138,13 @@ export default function MepServicesPage() {
           </div>
         </div>
 
-        {/* RIGHT: STATIC IMAGES - WHITE LINE REMOVED */}
+        {/* RIGHT: STATIC IMAGES */}
         <div style={{ width: "35%", height: "100%", display: "flex", flexDirection: "column" }}>
           <div style={{ position: "relative", width: "100%", height: "50%" }}>
-            <Image src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop" alt="Ventilation System" fill style={{ objectFit: "cover" }} />
+            <Image src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop" alt="Conference Screen" fill style={{ objectFit: "cover" }} />
           </div>
           <div style={{ position: "relative", width: "100%", height: "50%" }}>
-             <Image src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?q=80&w=2070&auto=format&fit=crop" alt="Industrial Pipes" fill style={{ objectFit: "cover" }} />
+             <Image src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop" alt="Audio Technology" fill style={{ objectFit: "cover" }} />
           </div>
         </div>
       </section>
@@ -152,18 +155,18 @@ export default function MepServicesPage() {
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", marginBottom: "50px", gap: "40px" }}>
             <div style={{ flex: "1 1 400px" }}>
               <h2 style={{ fontSize: "42px", fontWeight: "bold", fontFamily: "sans-serif", color: "black", lineHeight: "1.2" }}>
-                MEP Engineering<br/>Services
+                AV Solutions &<br/>Consultancy
               </h2>
             </div>
             <div style={{ flex: "1 1 400px" }}>
               <h3 style={{ fontSize: "36px", fontWeight: "bold", marginBottom: "15px", color: "black" }}>Our focus</h3>
               <p style={{ color: "#666", lineHeight: "1.6" }}>
-                Our MEP engineering design services provide sustainable solutions for projects across industries such as Offices, Restaurants, Hospitals, Commercial Buildings, Industrial factories, and others.
+                State-of-the-art Audio Visual solutions for modern conference rooms, auditoriums, and collaborative workspaces. We handle acoustics, system integration, and automation to ensure crystal-clear communication and seamless user experiences.
               </p>
             </div>
           </div>
           <div style={{ display: "flex", gap: "40px", marginBottom: "40px", borderBottom: "1px solid #eee", paddingBottom: "20px" }}>
-             {["Energy Efficient", "Sustainable", "Safety"].map((tab, i) => (
+             {["Acoustics", "Visuals", "Automation"].map((tab, i) => (
                <span key={i} style={{ fontSize: "16px", color: "black", fontWeight: "bold", cursor: "pointer" }}>{tab}</span>
              ))}
           </div>
@@ -172,7 +175,7 @@ export default function MepServicesPage() {
           <div className="scrolling-wrapper">
              {[...focusImages, ...focusImages, ...focusImages].map((img, i) => (
                <div key={i} style={{ position: "relative", flex: "0 0 400px", height: "250px", marginRight: "20px", borderRadius: "4px", overflow: "hidden" }}>
-                 <Image src={img} alt="MEP Gallery" fill style={{ objectFit: "cover" }} />
+                 <Image src={img} alt="AV Technology" fill style={{ objectFit: "cover" }} />
                </div>
              ))}
           </div>
@@ -183,7 +186,7 @@ export default function MepServicesPage() {
       <section style={{ padding: "100px 5%", backgroundColor: "#fcfcfc" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontSize: "36px", fontWeight: "bold", fontFamily: "sans-serif", color: "black", marginBottom: "60px" }}>
-            MEP Engineering Services with Elixi
+            Connecting People through Technology
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "50px", rowGap: "70px" }}>
             {processSteps.map((step, index) => (
@@ -201,4 +204,4 @@ export default function MepServicesPage() {
       <Footer />
     </main>
   );
-}     
+}

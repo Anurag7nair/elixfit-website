@@ -75,9 +75,13 @@ export default function Header() {
           ========================================= */}
           <nav className="desktop-nav" style={{ display: "flex", gap: "40px", alignItems: "center" }}>
             
+            {/* 1. HOME */}
             <Link href="/" style={navLinkStyle}>HOME</Link>
 
-            {/* SERVICES DROPDOWN */}
+            {/* 2. ABOUT US (Moved Here) */}
+            <Link href="/about-us" style={navLinkStyle}>ABOUT US</Link>
+
+            {/* 3. SERVICES DROPDOWN */}
             <div 
               style={{ position: "relative", padding: "10px 0" }}
               onMouseEnter={() => setIsServicesOpen(true)}
@@ -115,7 +119,6 @@ export default function Header() {
                   <Link href="/services/av-solution" style={dropdownItemStyle}>AV Solution and Consultancy</Link>
                   <div style={{ height: "1px", backgroundColor: "#eaeaea", width: "100%" }}></div>
 
-                  {/* NEW LINKS ADDED HERE */}
                   <Link href="/services/brand-aligned" style={dropdownItemStyle}>Brand Aligned Interior</Link>
                   <div style={{ height: "1px", backgroundColor: "#eaeaea", width: "100%" }}></div>
 
@@ -124,7 +127,7 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/about-us" style={navLinkStyle}>ABOUT US</Link>
+            {/* 4. CONTACT US */}
             <Link href="/contact-us" style={navLinkStyle}>CONTACT US</Link>
 
           </nav>
@@ -175,21 +178,24 @@ export default function Header() {
           gap: "25px",
           zIndex: 40
         }}>
+          {/* 1. HOME */}
           <Link href="/" onClick={() => setIsMobileMenuOpen(false)} style={mobileLinkStyle}>HOME</Link>
           
+          {/* 2. ABOUT US (Moved Here) */}
+          <Link href="/about-us" onClick={() => setIsMobileMenuOpen(false)} style={mobileLinkStyle}>ABOUT US</Link>
+
+          {/* 3. SERVICES LIST */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "15px" }}>
             <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} style={{...mobileLinkStyle, color: "#F09C16"}}>SERVICES</Link>
             <Link href="/services/design-and-build" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- Design & Build</Link>
             <Link href="/services/project-management" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- Project Management</Link>
             <Link href="/services/mep-services" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- MEP Services</Link>
             <Link href="/services/av-solution" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- AV Solutions</Link>
-            
-            {/* NEW MOBILE LINKS ADDED HERE */}
             <Link href="/services/brand-aligned" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- Brand Aligned Interior</Link>
             <Link href="/services/hvac-systems" onClick={() => setIsMobileMenuOpen(false)} style={mobileSubLinkStyle}>- HVAC Systems</Link>
           </div>
 
-          <Link href="/about-us" onClick={() => setIsMobileMenuOpen(false)} style={mobileLinkStyle}>ABOUT US</Link>
+          {/* 4. CONTACT US */}
           <Link href="/contact-us" onClick={() => setIsMobileMenuOpen(false)} style={mobileLinkStyle}>CONTACT US</Link>
         </div>
       )}

@@ -1,6 +1,19 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+// 1. Import the new stylish font "Allura"
+import { Allura, Montserrat } from "next/font/google";
+
+// 2. Configure the fonts
+const allura = Allura({ 
+  subsets: ["latin"], 
+  weight: ["400"] // Allura uses 400 but looks naturally bold/calligraphic
+});
+
+const montserrat = Montserrat({ 
+  subsets: ["latin"], 
+  weight: ["400", "600"] 
+});
 
 const slides = [
   "/images/slide1.jpg", 
@@ -75,37 +88,36 @@ export default function Hero() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "5px" // Reduced gap between main blocks
+          gap: "5px" 
       }}>
         
         {/* WRAPPER FOR TITLE & SUBTITLE ALIGNMENT */}
         <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "flex-end" }}>
             
-            {/* 1. MAIN TITLE "ELIXI FIT OUT" */}
-            <h1 style={{ 
+            {/* 1. MAIN TITLE - Updated to "Allura" Font */}
+            <h1 className={allura.className} style={{ 
               color: "white", 
-              fontSize: "clamp(32px, 6vw, 80px)", 
-              fontFamily: "sans-serif", 
-              fontWeight: "900", 
-              textTransform: "uppercase",
-              lineHeight: "1",
-              letterSpacing: "2px", 
-              marginBottom: "5px",
-              textShadow: "0 10px 30px rgba(0,0,0,0.5)",
-              whiteSpace: "nowrap" 
+              // Allura is naturally smaller, so we increase the size significantly here
+              fontSize: "clamp(70px, 13vw, 150px)", 
+              fontWeight: "400", 
+              textTransform: "capitalize", // Script looks best Capitalized (Not Uppercase)
+              lineHeight: "1.1",
+              marginBottom: "0px", // Reduced margin as script has tall loops
+              textShadow: "3px 3px 0px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.8)", // Deep shadow for readability
+              whiteSpace: "nowrap"
             }}>
-              ELIXI FIT OUT
+              Elixi Fit Out
             </h1>
 
-            {/* 2. SUBTITLE "by Elixi Hitec" - UPDATED: BIGGER SIZE */}
-            <p style={{ 
+            {/* 2. SUBTITLE "by Elixi Hitec" */}
+            <p className={montserrat.className} style={{ 
               color: "#F09C16", 
-              fontSize: "clamp(18px, 4vw, 32px)", // Increased size significantly
-              fontFamily: "sans-serif",
+              fontSize: "clamp(12px, 3vw, 22px)", 
               textTransform: "uppercase",
-              letterSpacing: "2px",
-              fontWeight: "bold",
-              marginBottom: "15px", // UPDATED: Reduced margin to pull the next line closer
+              letterSpacing: "4px",
+              fontWeight: "600",
+              marginBottom: "20px", 
+              marginTop: "-10px", // Pulling it up slightly to nestle under the script
               textAlign: "right", 
               width: "100%"
             }}>
@@ -114,14 +126,14 @@ export default function Hero() {
 
         </div>
 
-        {/* 3. TAGLINE "Weaving stories..." - Professional & Closer to text above */}
-        <div style={{ position: "relative", marginTop: "0px" }}>
-            <p style={{ 
+        {/* 3. TAGLINE "Weaving stories..." */}
+        <div style={{ position: "relative", marginTop: "10px" }}>
+            <p className={montserrat.className} style={{ 
               color: "#e0e0e0", 
-              fontSize: "clamp(16px, 2vw, 22px)", 
-              fontFamily: "sans-serif", 
+              fontSize: "clamp(12px, 2vw, 18px)", 
               fontWeight: "400",
-              letterSpacing: "4px",  
+              letterSpacing: "6px", 
+              textTransform: "uppercase",
               whiteSpace: "nowrap" 
             }}>
               Weaving stories through spaces
