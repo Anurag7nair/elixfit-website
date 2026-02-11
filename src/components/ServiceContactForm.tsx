@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 export default function ServiceContactForm() {
+  // 1. State to handle the data
   const [formData, setFormData] = useState({
     service: "Design and Build",
     firstName: "",
@@ -13,17 +14,63 @@ export default function ServiceContactForm() {
     area: "Carpet area",
   });
 
+  // 2. State to handle loading/success messages
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // 3. The Function that sends the email
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Submitted", formData);
-    alert("Thank you! We will contact you shortly.");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          // ⚠️ YOUR ACCESS KEY IS NOW SET HERE ⚠️
+          access_key: "c02b6852-46cc-4e36-8a40-c2fe1e57fad6", 
+          
+          // These are the fields sending to your email
+          subject: `New Lead: ${formData.firstName} - ${formData.service}`,
+          from_name: "Elixi Website",
+          ...formData,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Thank you! We have received your details and will call you shortly.");
+        // Reset form
+        setFormData({
+          service: "Design and Build",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          city: "Select City",
+          area: "Carpet area",
+        });
+      } else {
+        alert("Something went wrong. Please call us directly.");
+        console.error("Error:", result);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error sending form. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  // --- COMPREHENSIVE LIST OF INDIAN CITIES ---
+  // --- LIST OF CITIES ---
   const indianCities = [
     "Agra", "Ahmedabad", "Ajmer", "Aligarh", "Allahabad (Prayagraj)", "Amravati", "Amritsar", "Asansol", "Aurangabad", 
     "Bangalore (Bengaluru)", "Bareilly", "Belgaum", "Bhavnagar", "Bhilai", "Bhiwandi", "Bhopal", "Bhubaneswar", "Bikaner", "Bilaspur", "Bokaro Steel City", 
@@ -131,7 +178,6 @@ export default function ServiceContactForm() {
               <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} style={inputStyle} required />
             </div>
 
-            {/* UPDATED CITY DROPDOWN */}
             <select name="city" value={formData.city} onChange={handleChange} style={inputStyle}>
               <option value="Select City" disabled>Select City</option>
               {indianCities.map((city) => (
@@ -149,8 +195,9 @@ export default function ServiceContactForm() {
 
             <button 
               type="submit" 
+              disabled={isSubmitting}
               style={{
-                backgroundColor: "black",
+                backgroundColor: isSubmitting ? "#666" : "black",
                 color: "white",
                 border: "none",
                 padding: "18px",
@@ -158,15 +205,15 @@ export default function ServiceContactForm() {
                 fontWeight: "bold",
                 letterSpacing: "1px",
                 textTransform: "uppercase",
-                cursor: "pointer",
+                cursor: isSubmitting ? "not-allowed" : "pointer",
                 marginTop: "10px",
                 borderRadius: "4px",
                 transition: "background 0.3s"
               }}
-              onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#333"}
-              onMouseOut={(e) => e.currentTarget.style.backgroundColor = "black"}
+              onMouseOver={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = "#333")}
+              onMouseOut={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = "black")}
             >
-              Submit Request
+              {isSubmitting ? "Sending..." : "Submit Request"}
             </button>
 
           </form>
