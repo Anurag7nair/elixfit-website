@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 // ==========================================
-// 1. PROJECT DATA (YOUR EXACT SEQUENCE & COVERS - NO VIDEOS)
+// 1. PROJECT DATA (UPDATED TALATHI OFFICE SPECS)
 // ==========================================
 
 const projects = [
@@ -61,7 +61,8 @@ const projects = [
     id: 3,
     title: "20 Talathi Office",
     location: "Rahuri",
-    sqFt: "706 sq.ft/unit (14,000 Total)",
+    // UPDATED HERE: 700 sqft x 20 units = 14,000 Total
+    sqFt: "700 sq.ft/unit (14,000 Total)",
     description: "Comprehensive construction of 20 administrative units, delivering robust infrastructure for the Rahuri Talathi office.",
     folder: "20-talathi-office-rahuri",
     coverImage: "IMG-20250917-WA0009.jpeg",

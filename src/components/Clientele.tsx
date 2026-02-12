@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-// Row 1: Updated to new lowercase paths
+// Row 1: Added client-16 (Total: 8 items)
 const row1 = [
   "/clients/client-1.png",
   "/clients/client-2.png",
@@ -11,9 +11,10 @@ const row1 = [
   "/clients/client-5.png",
   "/clients/client-6.png",
   "/clients/client-14.png",
+  "/clients/client-16.png", // New
 ];
 
-// Row 2: Updated to new lowercase paths
+// Row 2: Added client-17 & client-18 (Total: 8 items)
 const row2 = [
   "/clients/client-13.png",
   "/clients/client-8.png",
@@ -21,7 +22,8 @@ const row2 = [
   "/clients/client-10.png",
   "/clients/client-11.png",
   "/clients/client-12.png",
-
+  "/clients/client-17.jpeg", // New
+  "/clients/client-18.jpeg", // New
 ];
 
 export default function Clientele() {
