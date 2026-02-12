@@ -34,7 +34,7 @@ export default function ServiceContactForm() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          // ⚠️ YOUR ACCESS KEY IS NOW SET HERE ⚠️
+          // ⚠️ YOUR ACCESS KEY ⚠️
           access_key: "c02b6852-46cc-4e36-8a40-c2fe1e57fad6", 
           
           // These are the fields sending to your email
@@ -70,29 +70,72 @@ export default function ServiceContactForm() {
     }
   };
 
-  // --- LIST OF CITIES ---
-  const indianCities = [
-    "Agra", "Ahmedabad", "Ajmer", "Aligarh", "Allahabad (Prayagraj)", "Amravati", "Amritsar", "Asansol", "Aurangabad", 
-    "Bangalore (Bengaluru)", "Bareilly", "Belgaum", "Bhavnagar", "Bhilai", "Bhiwandi", "Bhopal", "Bhubaneswar", "Bikaner", "Bilaspur", "Bokaro Steel City", 
-    "Chandigarh", "Chennai", "Coimbatore", "Cuttack", 
-    "Dehradun", "Delhi", "Dhanbad", "Durgapur", 
-    "Erode", "Faridabad", "Firozabad", 
-    "Ghaziabad", "Goa", "Gorakhpur", "Gulbarga", "Guntur", "Gurgaon (Gurugram)", "Guwahati", "Gwalior", 
-    "Hubli-Dharwad", "Hyderabad", 
-    "Imphal", "Indore", 
-    "Jabalpur", "Jaipur", "Jalandhar", "Jammu", "Jamnagar", "Jamshedpur", "Jhansi", "Jodhpur", 
-    "Kakinada", "Kannur", "Kanpur", "Kochi (Cochin)", "Kolhapur", "Kolkata", "Kollam", "Kota", "Kozhikode (Calicut)", "Kurnool", 
-    "Lucknow", "Ludhiana", 
-    "Madurai", "Malappuram", "Mangalore", "Mathura", "Meerut", "Moradabad", "Mumbai", "Mysore (Mysuru)", 
-    "Nagpur", "Nanded", "Nashik", "Navi Mumbai", "Nellore", "Noida", 
-    "Patna", "Pondicherry", "Pune", 
-    "Raipur", "Rajahmundry", "Rajkot", "Ranchi", "Rourkela", 
-    "Salem", "Sangli", "Shimla", "Siliguri", "Solapur", "Srinagar", "Surat", 
-    "Thane", "Thiruvananthapuram (Trivandrum)", "Thrissur", "Tiruchirappalli (Trichy)", "Tirunelveli", "Tiruppur", 
-    "Ujjain", 
-    "Vadodara", "Varanasi", "Vasai-Virar City", "Vellore", "Vijayawada", "Visakhapatnam", 
-    "Warangal", 
-    "Other"
+  // --- UPDATED LIST OF CITIES ---
+  // (Duplicates removed and sorted alphabetically)
+  const cityList = [
+    "Aamby Valley City", "Achalpur", "Adhal", "Afzalpur", "Ahiri", "Ahmadpur", "Ahilyanagar", "Ahwa", "Ajgaon", "Ajra", 
+    "Akalkot", "Akkalkuva", "Akluj", "Akola", "Akot", "Akshi", "Akurdi", "Aland", "Alandi", "Alibag", 
+    "Alirajpur", "Alwand", "Amali", "Amalner", "Amaravati", "Ambad", "Ambajogai", "Ambavli", "Ambegaon", "Ambernath", 
+    "Amboli", "Ambu Bet", "Amgaon", "Amravati", "Anand Sagar", "Anjaneri", "Anjangaon", "Anjarle", "Armori", "Arnala", 
+    "Aronda", "Arvi", "Asangaon", "Ashti", "Athni", "Atpadi", "Atvan", "Aundha Nagnath", "Aurad", "Ausa", 
+    "Awas", "Babulgaon", "Badlapur", "Bahirevādi", "Bajargaon", "Balewadi", "Bandra", "Baner", "Baramati", "Barsi", 
+    "Barsi Takli", "Barwani", "Basar", "Basavakalyan", "Basmat", "Bekare", "Belagavi", "Belapur", "Beloshi", "Bhadgaon", 
+    "Bhadravathi", "Bhagur", "Bhagwanpur", "Bhainsdehi", "Bhalki", "Bhandara", "Bhandardara", "Bhatkuli", "Bherav", "Bhilar", 
+    "Bhilpada", "Bhim Nagar", "Bhimashankar", "Bhivpuri Camp", "Bhiwandi", "Bhiwapur", "Bhoirwadi", "Bhokar", "Bhokardan", "Bhor", 
+    "Bhose", "Bhugaon", "Bhum", "Bhusawal", "Bid", "Bijapur", "Biloli", "Bir", "Boath", "Bodhan", 
+    "Boisar", "Bondarwadi", "Bordi", "Bori", "Borlipanchatan", "Bramhapuri", "Buldana", "Burhanpur", "Central Pune", "Chakan", 
+    "Chalisgaon", "Chamursi", "Chandgad", "Chandoli", "Chandrapur", "Chandur", "Chandur Bazar", "Chandvad", "Chaul", "Chendhare", 
+    "Chhatrapati Sambhajinagar", "Chikhaldara", "Chikodi", "Chimur", "Chinchani", "Chiplun", "Chondhi", "Chopda", "Chorla", "Cidco", 
+    "Corgao", "Dabhosa", "Dahanu", "Dahivadi", "Dapoli", "Dapoli Camp", "Darwha", "Daryapur", "Daund", "Dediapada", 
+    "Deharje", "Deoli", "Deori", "Devgad", "Devghar", "Devrukh", "Dhadgaon", "Dhanora", "Dharampur", "Dhargaon", 
+    "Dharni", "Dhule", "Digras", "Dindori", "Diveagar", "Divi Parangi", "Donaje", "Dongargarh", "Dudhani", "Dudhebavi", 
+    "Durshet", "Ellora", "Erandol", "Gadhinglaj", "Galtare", "Galna", "Gangakher", "Gangapur", "Gangavhare", "Ganpatipule", 
+    "Gargoti", "Garhchiroli", "Gaulwadi", "Gavhe", "Gevhande Khadak", "Gevrai", "Ghatanji", "Ghatgarh", "Ghod", "Ghodegaon", 
+    "Girinagar", "Girnare", "Gond Pipri", "Gondedumala", "Gondia", "Gorai", "Goregaon", "Gote", "Guhagar", "Gureghar", 
+    "Hadapsar", "Hadgaon", "Harihareshwar", "Harnai", "Harsud", "Hatkalangda", "Hatnoli", "Hinganghat", "Hingna", "Hingoli", 
+    "Hinjawadi", "Hudco Colony", "Hukeri", "Ibrampur", "Ichalkaranji", "Igatpuri", "Indapur", "Indi", "Islampur", "Itapalli", 
+    "Jadhavwadi", "Jalgaon", "Jalna", "Jamkhed", "Jamner", "Jaoli", "Jath", "Javan", "Jawhar", "Jejuri", 
+    "Jhambhulpada", "Jhirnia", "Jintur", "Junnar", "Jyotiba Dongar", "Kadachiwadi", "Kagal", "Kaij", "Kakadi", "Kalam", 
+    "Kalamnuri", "Kalaj", "Kallam", "Kalmeshwar", "Kalote Mokashi", "Kalwan", "Kalyan", "Kambare", "Kambare N.m.", "Kamptee", 
+    "Kamshet", "Kandahar", "Kankavali", "Kannad", "Karad", "Karal", "Karambeli Tarf Taloje", "Karandi Khurd", "Karanja", "Karde", 
+    "Karhandla", "Karjat", "Karla", "Karmal", "Karnala", "Karve Nagar", "Kasara", "Kasara Budruk", "Kasarwadi", "Kasheli", 
+    "Kashid", "Kashti", "Kaswand", "Katol", "Katrab", "Kavathe Mahankal", "Kelsi", "Khalapur", "Khalumbre", "Khamgaon", 
+    "Khanapur", "Khandala", "Khanivade", "Khapri", "Kharabwadi", "Kharakvasla", "Kharepatan", "Khatri Park Housing Society", "Khed", "Khopoli", 
+    "Khuldabad", "Kihim", "Kinwat", "Kolad", "Kolegaon", "Kolhapur", "Kolthare", "Kolvan", "Kondhapuri", "Kopargaon", 
+    "Kora", "Koregaon", "Korlai", "Kotawde", "Kothrud", "Kudavali", "Kudal", "Kuhi", "Kunkeshwar", "Kurandvad", 
+    "Kurkheda", "Kurunji", "Kurvande", "Kusgaon Budruk", "Ladghar", "Lakhandur", "Lakhni", "Lanji", "Lanja", "Latur", 
+    "Lavale", "Lavasa", "Lonand", "Lonar", "Lonavala", "Loni Kalbhor", "Machutar", "Madale", "Madha", "Madnur", 
+    "Mahabaleshwar", "Mahad", "Mahagaon", "Mahalunge Ingale", "Mahalungi", "Mahim", "Mahiravani", "Mahismal", "Mahurgad", "Majalgaon", 
+    "Majivali", "Malavli", "Malawali N.m.", "Malegaon", "Malgund", "Maliwada", "Malkapur", "Malkhed", "Malsiras", "Malunje", 
+    "Malvan", "Manchar", "Mandangarh", "Mandve", "Mandwa", "Maneri", "Mangalwedha", "Mangaon", "Mangaon Khurd", "Mangrul Pir", 
+    "Manjidana Colony", "Manmad", "Manor", "Mansar", "Maregaon", "Marleshwar", "Matheran", "Mauda", "Medha", "Merawane", 
+    "Mhasla", "Mira Bhayandar", "Miraj", "Mirya", "Mohadi", "Moharli", "Mohol", "Mokhada", "Morshi", "Mudhol", 
+    "Mukhed", "Mul", "Mulshi", "Multai", "Mumbai", "Mundhegaon", "Murbad", "Murtajapur", "Murud", "Murud-Harnai", 
+    "Murum Rural", "Nagaon", "Nagbhir", "Nagothane", "Nagpur", "Naigaon", "Nakinda", "Nala Sopara", "Naldurg", "Namas", 
+    "Nandanwan", "Nanded", "Nandgaon", "Nandgaon Khandeshwar", "Nandrabad", "Nandura", "Nandurbar", "Narainpur", "Narayangaon", "Narkher", 
+    "Nashik", "Nasrapur", "Naswadi", "Navapur", "Navi Mumbai", "Ner", "Neral", "Nevasa", "Nigdi", "Nijhar", 
+    "Nilanga", "Nilje Gaon", "Nipani", "Niphad", "Niravade", "Old Mahabaleshwar", "Osmanabad", "Ozar", "Pachora", "Paithan", 
+    "Pakhanjur", "Palghar", "Pali", "Paliyem", "Panchgani", "Pandharkawada", "Pandharpur", "Pangari", "Panhala", "Panhala Fort", 
+    "Pansemal", "Panshet", "Panvel", "Parbhani", "Parenda", "Parli Vaijnath", "Parner", "Parola", "Parsivni", "Partur", 
+    "Patan", "Pathardi", "Pathri", "Patoda", "Patur", "Paud", "Pawas", "Pawni", "Pegalwadi Tryambak", "Peint", 
+    "Pen", "Pernem", "Phaltan", "Pimple Saudagar", "Pimpri - Chinchwad", "Pinguli", "Pirangut", "Poladpur", "Pune", "Pusad", 
+    "Radhanagari", "Rahata", "Rahuri", "Raireshwar", "Rajapur", "Rajgurunagar", "Rajura", "Rajur", "Ralegaon", "Ramnagar", 
+    "Ramtek", "Ranjangaon", "Rasayani", "Ratnagiri", "Raver", "Revadanda", "Risod", "Roha", "Sagbara", "Sahajpur", 
+    "Sailu", "Saiv Kh", "Sajan", "Sakoli", "Sakri", "Salekasa", "Samudrapur", "Sangadewadi", "Sangameshwar", "Sangamner", 
+    "Sangavi", "Sangole", "Sangrampur", "Saputara", "Sarola", "Sasunavghar", "Sasvad", "Satara", "Sausar", "Savarpada", 
+    "Savner", "Sawantwadi", "Selu", "Sendhwa", "Sevagram", "Shahada", "Shahapur", "Shahuwadi", "Shani Shingnapur", "Shegaon", 
+    "Shevgaon", "Shikrapur", "Shilimb", "Shindaone", "Shindewadi", "Shirala", "Shirdi", "Shirgaon", "Shiroda", "Shirol", 
+    "Shiroli", "Shirpur", "Shirur", "Shirwal", "Shribag No.2", "Shrigonda", "Shrirampur", "Shrivardhan", "Sidhanathwadi Rural", "Sillod", 
+    "Silvassa", "Sindewahi", "Sindkhed Raja", "Sindkheda", "Sinnar", "Sironcha", "Sirpur", "Solapur", "Solashi", "Somatane", 
+    "Songadh", "Sortapwadi Phata", "Soygaon", "Surgana", "Takwa Budrukh", "Tala", "Talasri", "Talegaon", "Talegaon Dabhade", "Taloda", 
+    "Talvad", "Tapola", "Tarkarli", "Tasgaon", "Tathawade", "Tekadi Mandavzari", "Telhara", "Tembhari", "Thakursai", "Thane", 
+    "Thergaon", "Tikona Peth", "Tilari Nagar", "Tiracol", "Tirora", "Titwala", "Tivarekar Wadi", "Tivsa", "Toranmal", "Trimbak", 
+    "Tuljapur", "Tumsar", "Uchchhal", "Udgir", "Ukshi", "Ulhasnagar", "Umarga", "Umargam", "Umarkhed", "Umberpada", 
+    "Umred", "Undangaon", "Uruli Kanchan", "Vada", "Vadgaon", "Vaduj", "Vagheshwar", "Vaibhavwadi", "Vaijanath", "Vaijapur", 
+    "Vaishet", "Vajreshwari", "Valane", "Valha", "Valpoy", "Vangani", "Vansada", "Varasoli", "Varchi Ali", "Vardoli", 
+    "Vasai", "Vasai East", "Veer", "Velhe", "Velneshwar", "Vengurla", "Vijayapura", "Vijaydurg", "Vikramgadh", "Vishalgad", 
+    "Vite", "Wadki", "Wai", "Wakad", "Walen", "Wani", "Wardha", "Warje", "Warora", "Warud", "Washim", 
+    "Wavandhal", "Wadhiware", "Yaval", "Yavatmal", "Yeola", "Yesade", "Other"
   ];
 
   return (
@@ -180,7 +223,7 @@ export default function ServiceContactForm() {
 
             <select name="city" value={formData.city} onChange={handleChange} style={inputStyle}>
               <option value="Select City" disabled>Select City</option>
-              {indianCities.map((city) => (
+              {cityList.map((city) => (
                 <option key={city} value={city}>{city}</option>
               ))}
             </select>

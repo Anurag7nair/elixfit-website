@@ -2,11 +2,12 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServiceContactForm from "@/components/ServiceContactForm"; 
 import Image from "next/image";
 import { useState } from "react";
 
 // ==========================================
-// 1. PROJECT DATA (UPDATED TALATHI OFFICE SPECS)
+// 1. PROJECT DATA 
 // ==========================================
 
 const projects = [
@@ -15,7 +16,7 @@ const projects = [
     title: "Sai Shrushti Phase 1",
     location: "Talegaon Dabhade",
     sqFt: "50,000 sq.ft",
-    description: "A landmark residential development featuring modern amenities and spacious planning in the heart of Talegaon.",
+    description: "A landmark residential development featuring modern amenities and spacious planning in the heart of Talegaon. Includes 2 years free maintenance.",
     folder: "sai-shrushti-phase-1",
     coverImage: "NIGHT VIEW.png",
     gallery: [
@@ -29,7 +30,7 @@ const projects = [
     title: "Sai Shrushti Phase 2",
     location: "Talegaon Dabhade",
     sqFt: "40,000 sq.ft",
-    description: "The second phase of the premium township, continuing the legacy of quality construction with advanced structural design.",
+    description: "The second phase of the premium township, continuing the legacy of quality construction with advanced structural design. Includes 2 years free maintenance.",
     folder: "sai-shrushti-phase-2",
     coverImage: "FRONT VIEW.png",
     gallery: [
@@ -61,9 +62,8 @@ const projects = [
     id: 3,
     title: "20 Talathi Office",
     location: "Rahuri",
-    // UPDATED HERE: 700 sqft x 20 units = 14,000 Total
     sqFt: "700 sq.ft/unit (14,000 Total)",
-    description: "Comprehensive construction of 20 administrative units, delivering robust infrastructure for the Rahuri Talathi office.",
+    description: "Comprehensive construction of 20 administrative units, delivering robust infrastructure for the Rahuri Talathi office. Includes 2 years free maintenance.",
     folder: "20-talathi-office-rahuri",
     coverImage: "IMG-20250917-WA0009.jpeg",
     gallery: [
@@ -84,7 +84,7 @@ const projects = [
     title: "21 Talathi Office",
     location: "Karjat Taluka",
     sqFt: "1,000 sq.ft/unit (21,000 Total)",
-    description: "Modern office fit-out and civil development for 21 administrative blocks, designed for public service efficiency.",
+    description: "Modern office fit-out and civil development for 21 administrative blocks, designed for public service efficiency. Includes 2 years free maintenance.",
     folder: "21-talathi-office-karjat",
     coverImage: "IMG_2980.JPG.jpeg",
     gallery: [
@@ -102,7 +102,7 @@ const projects = [
     title: "Sai Park Row Houses",
     location: "Shirdi",
     sqFt: "16,000 sq.ft Project Area",
-    description: "Premium community of 30 row houses in Shirdi, offering modern living spaces with 3 years of free maintenance.",
+    description: "Premium community of 30 row houses in Shirdi, offering modern living spaces. Includes 2 years free maintenance.",
     folder: "sai-park-row-houses",
     coverImage: "1769832598998.png",
     gallery: [
@@ -125,7 +125,7 @@ const projects = [
     title: "Sai Silk Saree",
     location: "Shirdi",
     sqFt: "Retail Showroom",
-    description: "Elegant interior design and showroom fit-out optimizing display space and customer flow.",
+    description: "Elegant interior design and showroom fit-out optimizing display space and customer flow. Includes 2 years free maintenance.",
     folder: "sai-silk-saree",
     coverImage: "IMG_2368.JPG.jpeg",
     gallery: [
@@ -144,7 +144,7 @@ const projects = [
     title: "Primary Residential Hospital",
     location: "Fakhrabad",
     sqFt: "4,000 sq.ft",
-    description: "Construction of a primary residential hospital facility, focusing on healthcare standards and patient comfort.",
+    description: "Construction of a primary residential hospital facility, focusing on healthcare standards and patient comfort. Includes 2 years free maintenance.",
     folder: "primary-residential-hospital",
     coverImage: "IMG_3522.jpg",
     gallery: [
@@ -160,7 +160,7 @@ const projects = [
     title: "Mud House Project",
     location: "Rahuri",
     sqFt: "Sustainable Homes",
-    description: "Eco-friendly sustainable housing project utilizing traditional mud construction techniques for natural cooling.",
+    description: "Eco-friendly sustainable housing project utilizing traditional mud construction techniques for natural cooling. Includes 2 years free maintenance.",
     folder: "mud-house",
     coverImage: "IMG_6957.JPG.jpeg",
     gallery: [
@@ -170,12 +170,12 @@ const projects = [
   },
   {
     id: 9,
-    title: "Footers & Foundation",
+    title: "Footers", 
     location: "Shirdi",
     sqFt: "Structural",
-    description: "Deep foundation work and footing reinforcement executed with precision engineering.",
+    description: "We executed a complete interior renovation, providing the shop with a refreshing and modern new look. Includes 2 years free maintenance.", 
     folder: "footers",
-    coverImage: "IMG_0122.JPG.jpeg",
+    coverImage: "IMG_7448.jpg",
     gallery: [
       { type: "image", src: "IMG_0122.JPG.jpeg" },
       { type: "image", src: "IMG_0123.JPG.jpeg" },
@@ -198,7 +198,7 @@ const projects = [
     title: "Cheera Stone Work",
     location: "Maharashtra",
     sqFt: "N/A",
-    description: "Exquisite traditional Cheera stone masonry work, showcasing durability and heritage aesthetics.",
+    description: "Exquisite traditional Cheera stone masonry work, showcasing durability and heritage aesthetics. Includes 2 years free maintenance.",
     folder: "cheera-stone-work",
     coverImage: "WhatsApp Image 2026-02-11 at 11.41.32.jpeg",
     gallery: [
@@ -224,7 +224,7 @@ const projects = [
     title: "Our Office Interior",
     location: "Corporate HQ",
     sqFt: "1,800 sq.ft",
-    description: "Design and fit-out of our own corporate office, showcasing our interior capabilities and design philosophy.",
+    description: "Design and fit-out of our own corporate office, showcasing our interior capabilities and design philosophy. Includes 2 years free maintenance.",
     folder: "our-office-interior",
     coverImage: "IMG_6483.jpg",
     gallery: [
@@ -256,28 +256,33 @@ const projects = [
     title: "Government Projects",
     location: "Maharashtra",
     sqFt: "Infrastructure",
-    description: "Large-scale infrastructure and development projects executed for government bodies meeting strict quality standards.",
+    description: "Large-scale infrastructure and development projects executed for government bodies meeting strict quality standards. Includes 2 years free maintenance.",
     folder: "our-government-projects",
-    coverImage: "IMG-20240623-WA0009.jpg.jpeg",
+    coverImage: "IMG-20240623-WA0013.jpg.jpeg",
     gallery: [
-      { type: "image", src: "IMG-20240321-WA0032.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0009.jpg.jpeg" },
       { type: "image", src: "IMG-20240623-WA0013.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0014.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0015.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0018.jpg.jpeg" },
       { type: "image", src: "IMG-20240623-WA0019.jpg.jpeg" },
+      { type: "image", src: "IMG-20240623-WA0030.jpg.jpeg" },
+      { type: "image", src: "IMG-20240623-WA0037.jpg.jpeg" },
+      { type: "image", src: "IMG-20240623-WA0014.jpg.jpeg", rotation: -90 },
+      { type: "image", src: "IMG-20240623-WA0015.jpg.jpeg", rotation: -90 },
+      { type: "image", src: "IMG-20240321-WA0032.jpg.jpeg" },
+      { type: "image", src: "IMG-20240623-WA0009.jpg.jpeg"},
+      { type: "image", src: "IMG-20240623-WA0029.jpg.jpeg" },
+      { type: "image", src: "IMG-20240623-WA0034.jpg.jpeg" },
+      { type: "image", src: "IMG-20240623-WA0018.jpg.jpeg" },
       { type: "image", src: "IMG-20240623-WA0020.jpg.jpeg" },
       { type: "image", src: "IMG-20240623-WA0021.jpg.jpeg" },
       { type: "image", src: "IMG-20240623-WA0022.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0023.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0024.jpg.jpeg" },
       { type: "image", src: "IMG-20240623-WA0028.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0029.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0030.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0033.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0034.jpg.jpeg" },
-      { type: "image", src: "IMG-20240623-WA0037.jpg.jpeg" },
+      { type: "image", src: "IMG-20240623-WA0024.jpg.jpeg" },
+      
+      { type: "image", src: "IMG_2982.JPG.jpeg" },
+      { type: "image", src: "IMG_4052.JPG.jpeg" },
+            { type: "image", src: "20250111_141907.jpg.jpeg" },
+      { type: "image", src: "20251226_145418.jpg.jpeg" },
+      { type: "image", src: "20251226_145516.jpg.jpeg" },
+
       { type: "image", src: "IMG-20251119-WA0020.jpg.jpeg" },
       { type: "image", src: "IMG-20251126-WA0017.jpg.jpeg" },
       { type: "image", src: "IMG-20251126-WA0018.jpg.jpeg" },
@@ -295,7 +300,7 @@ const projects = [
     title: "Look & Feel (Concepts)",
     location: "Design Studio",
     sqFt: "Conceptual",
-    description: "Architectural visualizations, 3D renders, and aesthetic planning for bringing clients' dreams to life.",
+    description: "Architectural visualizations, 3D renders, and aesthetic planning for bringing clients' dreams to life. Includes 2 years free maintenance.",
     folder: "look-and-feel",
     coverImage: "FINAL PRINT_3 - Photo.jpg.jpeg",
     gallery: [
@@ -330,13 +335,13 @@ const projects = [
     title: "Our Other Work",
     location: "Multiple Sites",
     sqFt: "Various",
-    description: "A diverse collection of miscellaneous civil and interior projects completed across the region.",
+    description: "A diverse collection of miscellaneous civil and interior projects completed across the region. Includes 2 years free maintenance.",
     folder: "our-other-work",
     coverImage: "20241001_135542.jpg.jpeg",
     gallery: [
       { type: "image", src: "20241001_135542.jpg.jpeg" },
       { type: "image", src: "IMG_4045.JPG.jpeg" },
-      { type: "image", src: "IMG_4052.JPG.jpeg" },
+ 
       { type: "image", src: "IMG_4124.JPG.jpeg" },
       { type: "image", src: "IMG_4125.JPG.jpeg" },
       { type: "image", src: "IMG-20240623-WA0026.jpg.jpeg" },
@@ -532,7 +537,7 @@ export default function AboutUsPage() {
                   </div>
                 </div>
                 <div style={{ maxWidth: "500px", textAlign: "left" }}> 
-                   <p style={{ color: "#555", lineHeight: "1.6", fontSize: "16px" }}>{activeProject.description}</p>
+                    <p style={{ color: "#555", lineHeight: "1.6", fontSize: "16px" }}>{activeProject.description}</p>
                 </div>
               </div>
 
@@ -566,7 +571,11 @@ export default function AboutUsPage() {
                         src={getPath(activeProject.folder, media.src)} 
                         alt={activeProject.title} 
                         fill 
-                        style={{ objectFit: "cover", transition: "transform 0.5s" }}
+                        style={{ 
+                          objectFit: "cover", 
+                          transition: "transform 0.5s",
+                          transform: media.rotation ? `rotate(${media.rotation}deg)` : "none" // Fixed: Added rotation logic
+                        }}
                         className="gallery-img"
                       />
                     )}
@@ -597,7 +606,16 @@ export default function AboutUsPage() {
                 <source src={getPath(activeProject.folder, lightboxMedia.src)} type="video/mp4" />
               </video>
             ) : (
-              <Image src={getPath(activeProject.folder, lightboxMedia.src)} alt="Full view" fill style={{ objectFit: "contain" }} />
+              // Fixed: Added rotation logic to lightbox image
+              <Image 
+                src={getPath(activeProject.folder, lightboxMedia.src)} 
+                alt="Full view" 
+                fill 
+                style={{ 
+                  objectFit: "contain",
+                  transform: lightboxMedia.rotation ? `rotate(${lightboxMedia.rotation}deg)` : "none" 
+                }} 
+              />
             )}
 
             <button 
@@ -631,6 +649,9 @@ export default function AboutUsPage() {
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
+      
+      {/* --- CONTACT FORM ADDED HERE --- */}
+      <ServiceContactForm />
 
       <Footer />
     </main>

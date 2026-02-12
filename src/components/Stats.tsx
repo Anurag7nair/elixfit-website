@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 
+// --- UPDATED STATS DATA ---
 const statsData = [
-  { id: 1, value: 50, suffix: "+", label: "Projects Completed" },
-  { id: 2, value: 250, suffix: "+", label: "Happy Clients" },
-  { id: 3, value: 15, suffix: "+", label: "Awards Won" },
+  { id: 1, value: 250, suffix: "+", label: "Projects Completed" },
+  { id: 2, value: 130, suffix: "+", label: "Happy Clients" },
+  { id: 3, value: 9, suffix: "+", label: "Awards Won" },
   { id: 4, value: 10, suffix: "+", label: "Years Experience" },
 ];
 

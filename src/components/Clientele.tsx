@@ -22,8 +22,8 @@ const row2 = [
   "/clients/client-10.png",
   "/clients/client-11.png",
   "/clients/client-12.png",
-  "/clients/client-17.jpeg", // New
-  "/clients/client-18.jpeg", // New
+  "/clients/client-17.png", // New
+  "/clients/client-18.png", // New
 ];
 
 export default function Clientele() {
