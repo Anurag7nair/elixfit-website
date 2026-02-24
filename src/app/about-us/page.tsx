@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ServiceContactForm from "@/components/ServiceContactForm"; 
+import Testimonials from "@/components/Testimonials"; // <-- Imported Testimonials here
 import Image from "next/image";
 import { useState } from "react";
 
@@ -341,7 +342,7 @@ const projects = [
     gallery: [
       { type: "image", src: "20241001_135542.jpg.jpeg" },
       { type: "image", src: "IMG_4045.JPG.jpeg" },
- 
+
       { type: "image", src: "IMG_4124.JPG.jpeg" },
       { type: "image", src: "IMG_4125.JPG.jpeg" },
       { type: "image", src: "IMG-20240623-WA0026.jpg.jpeg" },
@@ -574,7 +575,7 @@ export default function AboutUsPage() {
                         style={{ 
                           objectFit: "cover", 
                           transition: "transform 0.5s",
-                          transform: media.rotation ? `rotate(${media.rotation}deg)` : "none" // Fixed: Added rotation logic
+                          transform: media.rotation ? `rotate(${media.rotation}deg)` : "none" 
                         }}
                         className="gallery-img"
                       />
@@ -606,7 +607,6 @@ export default function AboutUsPage() {
                 <source src={getPath(activeProject.folder, lightboxMedia.src)} type="video/mp4" />
               </video>
             ) : (
-              // Fixed: Added rotation logic to lightbox image
               <Image 
                 src={getPath(activeProject.folder, lightboxMedia.src)} 
                 alt="Full view" 
@@ -650,7 +650,10 @@ export default function AboutUsPage() {
         }
       `}</style>
       
-      {/* --- CONTACT FORM ADDED HERE --- */}
+      {/* --- TESTIMONIALS ADDED HERE --- */}
+      <Testimonials />
+
+      {/* --- CONTACT FORM --- */}
       <ServiceContactForm />
 
       <Footer />
